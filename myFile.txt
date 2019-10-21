@@ -1,0 +1,9 @@
+E Adam Eve Charles
+E Adam Eve Chris
+E Chris Jenny Eva
+E Chris Jenny Angel
+E Charles CharlesWife Brian
+W child Adam
+W sibling Chris
+W ancestor Brian
+W descendent Adam
