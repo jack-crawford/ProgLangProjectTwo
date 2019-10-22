@@ -26,3 +26,5 @@ X Adam descendent Eve
 X Charles sibling Chris
 X Adam sibling Eve 
 ~~~~
+
+For CSC 1800, we do the same project in multiple languages. First was Java, and now, here, Python! 
