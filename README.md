@@ -1,5 +1,5 @@
-# ProgLangProjectTwo
-Family Tree in Python
+# Programming Languages Project Two: Python Boogaloo
+Family Tree Analysis in Python
 
 ## What the hell is this?
 This is a project for CSC 1800, Organization of Programming Languages.
