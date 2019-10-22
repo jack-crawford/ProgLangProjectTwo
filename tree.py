@@ -1,8 +1,6 @@
 import sys
-# fileHandle = open('TestInputs/test4.txt') 
 fileHandle = open('myFile.txt') 
 people = {} 
-
 def getAncestors(subject):
     ancestors = []
     for parent, child in people.items():
@@ -22,25 +20,17 @@ def getDescendents(subject):
             descendents.extend(getDescendents(kid))
     return descendents
 def getCousins(subject):
-    # get cousings here
     print("here we get", subject, "'s cousins")
 for line in fileHandle:
     command = line[0]
     contents = line.split()
-    # print(people)
-    #print(contents)
     if(command == "E"):
-        # we're adding a couple or a child
-        # print("add ->", line[1:])
         if(len(contents) == 4):
-            # this is a couple
             if(contents[1] in people):
-                # it exists, append
                 people[contents[1]].append(contents[3])
             else: 
                 people[contents[1]] = [contents[3]]
             if(contents[2] in people):
-                # it exists, append
                 people[contents[2]].append(contents[3])
             else: 
                 people[contents[2]] = [contents[3]]
@@ -52,12 +42,9 @@ for line in fileHandle:
         if(key == "child"):
             print(people.get(subject))
         if(key == "sibling"):
-            # get parents
             siblings = []
             for parent, child in people.items():
                 if(subject in child):
-                    # print(parent)
-                    # print(people[parent])
                     for potentialSibling in people[parent]:
                         if(potentialSibling != subject and potentialSibling not in siblings):
                             siblings.append(potentialSibling)
@@ -69,8 +56,6 @@ for line in fileHandle:
             descendents = getDescendents(subject)
             print("the descendents are", ", ".join(descendents))
     if(command == "X"):
-        # we're querying specifically
-        # print("specific query ->", line[1:])
         subject = contents[3]
         personInQuestion = contents[1]
         quality = contents[2]
@@ -93,12 +78,9 @@ for line in fileHandle:
             else:
                 print(personInQuestion, "is NOT a descendent of", subject)  
         if(quality == "sibling"):
-            # get parents
             siblings = []
             for parent, child in people.items():
                 if(subject in child):
-                    # print(parent)
-                    # print(people[parent])
                     for potentialSibling in people[parent]:
                         if(potentialSibling != subject and potentialSibling not in siblings):
                             siblings.append(potentialSibling)
