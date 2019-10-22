@@ -13,6 +13,8 @@ def getAncestors(subject):
             ancestors.extend(getAncestors(ancestor))
     return ancestors
 def getDescendents(subject):
+    if(subject not in people):
+        return subject
     descendents = people[subject]
     print(descendents)
     for kid in descendents:
@@ -68,7 +70,7 @@ for line in fileHandle:
             print("the descendents are", ", ".join(descendents))
     if(command == "X"):
         # we're querying specifically
-        print("specific query ->", line[1:])
+        # print("specific query ->", line[1:])
         subject = contents[3]
         personInQuestion = contents[1]
         quality = contents[2]
@@ -77,5 +79,31 @@ for line in fileHandle:
             if(personInQuestion in people.get(subject)):
                 print(personInQuestion, "is a child of", subject)
             else:
-                print(personInQuestion, "is NOT child of", subject)
+                print(personInQuestion, "is NOT a child of", subject)
+        if(quality == "ancestor"):
+            ancestors = getAncestors(subject)
+            if(personInQuestion in ancestors):
+                print(personInQuestion, "is an ancestor of", subject)
+            else:
+                print(personInQuestion, "is NOT an ancestor of", subject)  
+        if(quality == "descendent"):
+            descendents = getDescendents(subject)
+            if(personInQuestion in descendents):
+                print(personInQuestion, "is a descendent of", subject)
+            else:
+                print(personInQuestion, "is NOT a descendent of", subject)  
+        if(quality == "sibling"):
+            # get parents
+            siblings = []
+            for parent, child in people.items():
+                if(subject in child):
+                    # print(parent)
+                    # print(people[parent])
+                    for potentialSibling in people[parent]:
+                        if(potentialSibling != subject and potentialSibling not in siblings):
+                            siblings.append(potentialSibling)
+            if(personInQuestion in siblings):
+                print(personInQuestion, "is a sibling of", subject)
+            else:
+                print(personInQuestion, "is NOT a sibling of", subject)  
 fileHandle.close()
