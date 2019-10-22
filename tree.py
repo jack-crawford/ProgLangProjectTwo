@@ -1,7 +1,8 @@
 import sys
 # fileHandle = open('TestInputs/test4.txt') 
 fileHandle = open('myFile.txt') 
-people = {}
+people = {} 
+
 def getAncestors(subject):
     ancestors = []
     for parent, child in people.items():
@@ -68,5 +69,13 @@ for line in fileHandle:
     if(command == "X"):
         # we're querying specifically
         print("specific query ->", line[1:])
-
+        subject = contents[3]
+        personInQuestion = contents[1]
+        quality = contents[2]
+        print("we're looking at ", subject, personInQuestion, "and their relationship as", quality)
+        if(quality == "child"):
+            if(personInQuestion in people.get(subject)):
+                print(personInQuestion, "is a child of", subject)
+            else:
+                print(personInQuestion, "is NOT child of", subject)
 fileHandle.close()
